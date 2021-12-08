@@ -82,9 +82,9 @@ let handler  = async (m, { conn, usedPrefix: _p, DevMode }) => {
           if (menu.help) groups[tag].push(menu)
     }
     conn.menu = conn.menu ? conn.menu : {}
-    let before = conn.menu.before || '━━❉ ```${conn.user.name}``` ❉━━'
-    let header = conn.menu.header || '```%category```'
-    let body   = conn.menu.body   || '%cmd%'
+    let before = conn.menu.before || '━━❉ ```MENU BOT``` ❉━━'
+    let header = conn.menu.header || '*%category*'
+    let body   = conn.menu.body   || '%cmd'
     let footer = conn.menu.footer || '\n'
     let after  = conn.menu.after  || '\n'
     let _text  = before + '\n'
@@ -110,13 +110,13 @@ let handler  = async (m, { conn, usedPrefix: _p, DevMode }) => {
     }
     text = text.replace(new RegExp(`%(${Object.keys(replace).join`|`})`, 'g'), (_, name) => replace[name])
     //conn.reply(m.chat, text.trim(), m)
-    await conn.send2Button(m.chat, text.trim(), '*${ucapan()}*  %name!', 'OWNER', '#owner', 'DONASI', '#donasi', m)
+    await conn.send2Button(m.chat, text.trim(), 'M Ismail', '😂', '.menu', '🤣', '#menu', m)
   } catch (e) {
     conn.reply(m.chat, 'Maaf, menu sedang error', m)
     throw e
   }
 }
-handler.help = ['menu', 'help', '?']
+handler.help = ['menu']
 handler.tags = ['main']
 handler.command = /^(menu|help|\?)$/i
 handler.owner = false
