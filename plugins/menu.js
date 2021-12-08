@@ -82,17 +82,9 @@ let handler  = async (m, { conn, usedPrefix: _p, DevMode }) => {
           if (menu.help) groups[tag].push(menu)
     }
     conn.menu = conn.menu ? conn.menu : {}
-    let before = conn.menu.before || ` ┌──「 ${conn.user.name} 」
-│============================
-├  ${ucapan()}, %name!
-├ Nama : %name!
-├ Hari: *%week %weton*
-├ Tanggal: *%date*
-├ Waktu: *%time*
-├ Uptime: *%uptime (%muptime)*
-│============================`
-    let header = conn.menu.header || '◪「 %category 」'
-    let body   = conn.menu.body   || '├❏  %cmd%islimit'
+    let before = conn.menu.before || '━━❉ ```${conn.user.name}``` ❉━━'
+    let header = conn.menu.header || '```%category```'
+    let body   = conn.menu.body   || '%cmd%'
     let footer = conn.menu.footer || '\n'
     let after  = conn.menu.after  || '\n'
     let _text  = before + '\n'
@@ -118,7 +110,7 @@ let handler  = async (m, { conn, usedPrefix: _p, DevMode }) => {
     }
     text = text.replace(new RegExp(`%(${Object.keys(replace).join`|`})`, 'g'), (_, name) => replace[name])
     //conn.reply(m.chat, text.trim(), m)
-    await conn.send2Button(m.chat, text.trim(), 'PEMILIK BOT BY ❤️ BENNIISMAEL', 'OWNER', '#owner', 'DONASI', '#donasi', m)
+    await conn.send2Button(m.chat, text.trim(), '*${ucapan()}*  %name!', 'OWNER', '#owner', 'DONASI', '#donasi', m)
   } catch (e) {
     conn.reply(m.chat, 'Maaf, menu sedang error', m)
     throw e
